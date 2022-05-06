@@ -1,4 +1,4 @@
-# Task: Frontend Developer Interview
+# Task: React Native Developer Interview
 
 This is a task designed to understand the skillset of developers joining Now&Me.
 The task will be assessed on the following factors:
