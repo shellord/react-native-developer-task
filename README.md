@@ -15,7 +15,7 @@ The task will be assessed on the following factors:
 
 ## Requirements
 
-The goal of the task is to build a mini React Native app from the provided design linked above.
+The goal of the task is to build a mini React Native app (Just the UI bit, no need to create an backend REST API) from the provided design linked above.
 
 — You are free to choose either Expo or Bare React Native
 
