@@ -2,7 +2,10 @@ import { Text, StyleSheet, View, TextInput } from 'react-native'
 import Container from '../shared/Container'
 import CustomButton from '../shared/CustomButton'
 
-const CreatePost: React.FC = () => {
+type Props = {
+  onPost: () => void
+}
+const CreatePost: React.FC<Props> = ({ onPost }) => {
   return (
     <Container>
       <Text style={styles.heading}>Create Post</Text>
@@ -19,7 +22,7 @@ const CreatePost: React.FC = () => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <CustomButton title='Post' variant='secondary' />
+        <CustomButton title='Post' variant='secondary' onPress={onPost} />
       </View>
     </Container>
   )

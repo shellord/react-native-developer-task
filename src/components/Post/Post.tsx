@@ -28,7 +28,10 @@ const Post: React.FC<Props> = ({
           <Image source={{ uri: image }} style={styles.image} />
           <View style={{ marginLeft: 12 }}>
             <Text style={styles.name}>{name}</Text>
-            <Text style={styles.time}>{time}</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={styles.time}>{time}</Text>
+              {isEdited && <Text style={styles.time}> • Edited</Text>}
+            </View>
           </View>
         </View>
         <MaterialCommunityIcons

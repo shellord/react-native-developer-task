@@ -7,25 +7,35 @@ import {
 } from 'react-native'
 import CustomInputField from './shared/CustomInputField'
 import CustomButton from './shared/CustomButton'
+import { useNavigation } from '@react-navigation/native'
+import Container from './shared/Container'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 type Props = {
   onLogin: () => void
-  onRegister: () => void
+  onSignup: () => void
 }
 
-const Login: React.FC<Props> = ({ onLogin, onRegister }) => {
+const Signup: React.FC<Props> = ({ onLogin, onSignup }) => {
+  const navigation = useNavigation()
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <>
         <View style={styles.header}>
-          <Text style={styles.lightText}>WELCOME BACK</Text>
-          <Text style={styles.headerText}>Log into your account</Text>
+          <Text style={styles.lightText}>SIGN UP</Text>
+          <Text style={styles.headerText}>Create an account to continue</Text>
         </View>
         <View style={styles.inputContainer}>
           <CustomInputField
-            label='Email or Username'
+            label='Email '
             placeholder='Enter your email'
+            type='text'
+          />
+          <View style={{ marginTop: 16 }} />
+          <CustomInputField
+            label='Username'
+            placeholder='Choose a preferred username'
             type='text'
           />
           <View style={{ marginTop: 16 }} />
@@ -33,16 +43,13 @@ const Login: React.FC<Props> = ({ onLogin, onRegister }) => {
             label='Password'
             placeholder='Enter your password'
             type='password'
-            rightText='Forgot password?'
           />
           <View style={{ marginTop: 20 }} />
-          <CustomButton title='Login now' onPress={onLogin} />
+          <CustomButton title='Continue' onPress={onSignup} />
         </View>
-        <TouchableOpacity style={styles.footer} onPress={onRegister}>
-          <Text style={styles.lightText}>Not registered yet? </Text>
-          <Text style={{ ...styles.lightText, color: '#C5C7CA' }}>
-            Register
-          </Text>
+        <TouchableOpacity style={styles.footer} onPress={onLogin}>
+          <Text style={styles.lightText}>Already have an account?</Text>
+          <Text style={{ ...styles.lightText, color: '#C5C7CA' }}>Login</Text>
         </TouchableOpacity>
       </>
     </TouchableWithoutFeedback>
@@ -75,4 +82,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Login
+export default Signup

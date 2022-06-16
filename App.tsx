@@ -10,9 +10,10 @@ import {
   Inter_600SemiBold,
   Inter_400Regular,
 } from '@expo-google-fonts/inter'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 export type RootStackParamList = {
-  Home: undefined
+  Home: { showRegister: boolean }
   Auth: undefined
 }
 
@@ -30,18 +31,20 @@ const App: React.FC = () => {
   }
 
   return (
-    <NavigationContainer>
-      <RootStack.Navigator
-        initialRouteName='Auth'
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <RootStack.Screen name='Auth' component={AuthScreen} />
-        <RootStack.Screen name='Home' component={HomeScreen} />
-      </RootStack.Navigator>
-      <StatusBar style='light' />
-    </NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <RootStack.Navigator
+          initialRouteName='Auth'
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <RootStack.Screen name='Auth' component={AuthScreen} />
+          <RootStack.Screen name='Home' component={HomeScreen} />
+        </RootStack.Navigator>
+        <StatusBar style='light' />
+      </NavigationContainer>
+    </GestureHandlerRootView>
   )
 }
 

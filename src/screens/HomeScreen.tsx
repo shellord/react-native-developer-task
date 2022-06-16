@@ -8,8 +8,35 @@ import {
 } from 'react-native'
 import CreatePost from '../components/Post/CreatePost'
 import Post from '../components/Post/Post'
+import { BottomSheet } from 'react-native-btr'
+import Login from '../components/Login'
+import React from 'react'
+import ModalContainer from '../components/shared/ModalContainer'
+import Signup from '../components/Signup'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { RootStackParamList } from '../../App'
 
-const HomeScreen: React.FC = () => {
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>
+
+const HomeScreen: React.FC<Props> = ({ route }) => {
+  const [showLogin, setShowLogin] = React.useState(false)
+  const [showSignup, setShowSignup] = React.useState(
+    route.params.showRegister ?? false
+  )
+
+  const showSignupModal = () => {
+    setShowLogin(false)
+    setTimeout(() => {
+      setShowSignup(true)
+    }, 500)
+  }
+
+  const showLoginModal = () => {
+    setShowSignup(false)
+    setTimeout(() => {
+      setShowLogin(true)
+    }, 500)
+  }
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -21,7 +48,7 @@ const HomeScreen: React.FC = () => {
           </Text>
         </View>
         <View style={styles.createPostContainer}>
-          <CreatePost />
+          <CreatePost onPost={() => setShowLogin(true)} />
         </View>
         <View style={styles.postsContainer}>
           <Post
@@ -30,7 +57,6 @@ const HomeScreen: React.FC = () => {
             emoji='👋'
             message='Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
             comments={24}
-            isEdited={false}
             image='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80'
           />
           <View style={{ marginTop: 16 }} />
@@ -40,12 +66,44 @@ const HomeScreen: React.FC = () => {
             emoji='👋'
             message='Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
             comments={24}
-            isEdited={false}
+            isEdited={true}
             image='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80'
           />
-          <View style={{ marginTop: 34 }} />
         </View>
       </ScrollView>
+      <BottomSheet
+        visible={showLogin}
+        onBackButtonPress={() => setShowLogin(false)}
+        onBackdropPress={() => setShowLogin(false)}
+      >
+        <View
+          style={{ backgroundColor: '#27292D', height: '60%', borderRadius: 8 }}
+        >
+          <ModalContainer onClose={() => setShowLogin(false)}>
+            <Login
+              onLogin={() => setShowLogin(false)}
+              onRegister={() => showSignupModal()}
+            />
+          </ModalContainer>
+        </View>
+      </BottomSheet>
+
+      <BottomSheet
+        visible={showSignup}
+        onBackButtonPress={() => setShowSignup(false)}
+        onBackdropPress={() => setShowSignup(false)}
+      >
+        <View
+          style={{ backgroundColor: '#27292D', height: '80%', borderRadius: 8 }}
+        >
+          <ModalContainer onClose={() => setShowSignup(false)}>
+            <Signup
+              onLogin={() => showLoginModal()}
+              onSignup={() => setShowSignup(false)}
+            />
+          </ModalContainer>
+        </View>
+      </BottomSheet>
     </SafeAreaView>
   )
 }
@@ -77,6 +135,7 @@ const styles = StyleSheet.create({
   postsContainer: {
     marginTop: 16,
     flex: 1,
+    marginBottom: 50,
   },
 })
 export default HomeScreen
