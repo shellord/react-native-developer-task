@@ -7,8 +7,10 @@ const CreatePost: React.FC = () => {
     <Container>
       <Text style={styles.heading}>Create Post</Text>
       <View style={styles.postInputContainer}>
-        <View style={styles.icon}>
-          <Text>💬</Text>
+        <View style={styles.iconContainer}>
+          <View style={styles.icon}>
+            <Text>💬</Text>
+          </View>
         </View>
         <TextInput
           placeholder='How are you feeling today?'
@@ -41,9 +43,17 @@ const styles = StyleSheet.create({
     marginTop: 16,
     borderRadius: 8,
   },
-  icon: {
+  iconContainer: {
     marginRight: 16,
     marginLeft: 20,
+  },
+  icon: {
+    backgroundColor: '#27292D',
+    width: 34,
+    height: 34,
+    borderRadius: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   postInput: {
     color: 'white',
