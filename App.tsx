@@ -8,6 +8,7 @@ import {
   useFonts,
   Inter_500Medium,
   Inter_600SemiBold,
+  Inter_400Regular,
 } from '@expo-google-fonts/inter'
 
 export type RootStackParamList = {
@@ -21,6 +22,7 @@ const App: React.FC = () => {
   let [fontsLoaded] = useFonts({
     Inter_500Medium,
     Inter_600SemiBold,
+    Inter_400Regular,
   })
 
   if (!fontsLoaded) {

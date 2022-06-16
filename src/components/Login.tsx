@@ -8,13 +8,14 @@ import {
 import CustomInputField from './shared/CustomInputField'
 import CustomButton from './shared/CustomButton'
 import { useNavigation } from '@react-navigation/native'
+import Container from './shared/Container'
 
 const Login: React.FC = () => {
   const navigation = useNavigation()
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={styles.container}>
+      <Container style={{ borderColor: '#969696' }}>
         <View style={styles.header}>
           <Text style={styles.lightText}>WELCOME BACK</Text>
           <Text style={styles.headerText}>Log into your account</Text>
@@ -46,21 +47,12 @@ const Login: React.FC = () => {
             Register
           </Text>
         </View>
-      </View>
+      </Container>
     </TouchableWithoutFeedback>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#27292D',
-    width: '100%',
-    paddingVertical: 40,
-    borderColor: '#969696',
-    borderWidth: 2,
-    borderRadius: 8,
-    paddingHorizontal: 12,
-  },
   header: {
     alignItems: 'center',
   },
