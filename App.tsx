@@ -10,7 +10,12 @@ import {
   Inter_600SemiBold,
 } from '@expo-google-fonts/inter'
 
-const Stack = createNativeStackNavigator()
+export type RootStackParamList = {
+  Home: undefined
+  Auth: undefined
+}
+
+const RootStack = createNativeStackNavigator<RootStackParamList>()
 
 const App: React.FC = () => {
   let [fontsLoaded] = useFonts({
@@ -24,16 +29,15 @@ const App: React.FC = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Auth'>
-        <Stack.Screen
-          name='Auth'
-          component={AuthScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen name='Home' component={HomeScreen} />
-      </Stack.Navigator>
+      <RootStack.Navigator
+        initialRouteName='Auth'
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <RootStack.Screen name='Auth' component={AuthScreen} />
+        <RootStack.Screen name='Home' component={HomeScreen} />
+      </RootStack.Navigator>
       <StatusBar style='light' />
     </NavigationContainer>
   )

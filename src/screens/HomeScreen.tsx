@@ -11,6 +11,7 @@ const HomeScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'black',
+    flex: 1,
   },
 })
 export default HomeScreen
