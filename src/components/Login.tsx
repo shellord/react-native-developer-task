@@ -9,7 +9,6 @@ import {
 import CustomInputField from './shared/CustomInputField'
 import CustomButton from './shared/CustomButton'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 type Props = {
   onLogin: () => void
@@ -19,13 +18,12 @@ type Props = {
 const Login: React.FC<Props> = ({ onLogin, onRegister }) => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <KeyboardAwareScrollView extraScrollHeight={230}>
+      <>
         <View style={styles.header}>
           <Text style={styles.lightText}>WELCOME BACK</Text>
           <Text style={styles.headerText}>Log into your account</Text>
         </View>
         <View style={styles.inputContainer}>
-          <TouchableOpacity></TouchableOpacity>
           <CustomInputField
             label='Email or Username'
             placeholder='Enter your email'
@@ -47,7 +45,7 @@ const Login: React.FC<Props> = ({ onLogin, onRegister }) => {
             Register →
           </Text>
         </Pressable>
-      </KeyboardAwareScrollView>
+      </>
     </TouchableWithoutFeedback>
   )
 }

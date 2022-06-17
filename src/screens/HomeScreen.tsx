@@ -15,6 +15,7 @@ import ModalContainer from '../components/shared/ModalContainer'
 import Signup from '../components/Signup'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../App'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>
 
@@ -80,10 +81,12 @@ const HomeScreen: React.FC<Props> = ({ route }) => {
           style={{ backgroundColor: '#27292D', height: '60%', borderRadius: 8 }}
         >
           <ModalContainer onClose={() => setShowLogin(false)}>
-            <Login
-              onLogin={() => setShowLogin(false)}
-              onRegister={() => showSignupModal()}
-            />
+            <KeyboardAwareScrollView>
+              <Login
+                onLogin={() => setShowLogin(false)}
+                onRegister={() => showSignupModal()}
+              />
+            </KeyboardAwareScrollView>
           </ModalContainer>
         </View>
       </BottomSheet>

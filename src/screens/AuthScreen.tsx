@@ -9,6 +9,10 @@ const AuthScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      <View style={{ marginBottom: 42 }}>
+        <Logo />
+      </View>
+
       <Container style={{ borderColor: '#969696' }}>
         <Login
           onLogin={() => {
