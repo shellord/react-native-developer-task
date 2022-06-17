@@ -7,9 +7,8 @@ import {
 } from 'react-native'
 import CustomInputField from './shared/CustomInputField'
 import CustomButton from './shared/CustomButton'
-import { useNavigation } from '@react-navigation/native'
-import Container from './shared/Container'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 type Props = {
   onLogin: () => void
@@ -17,16 +16,15 @@ type Props = {
 }
 
 const Signup: React.FC<Props> = ({ onLogin, onSignup }) => {
-  const navigation = useNavigation()
-
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <>
+      <KeyboardAwareScrollView style={styles.inputContainer} extraHeight={100}>
         <View style={styles.header}>
           <Text style={styles.lightText}>SIGN UP</Text>
           <Text style={styles.headerText}>Create an account to continue</Text>
         </View>
-        <View style={styles.inputContainer}>
+
+        <ScrollView>
           <CustomInputField
             label='Email '
             placeholder='Enter your email'
@@ -46,12 +44,15 @@ const Signup: React.FC<Props> = ({ onLogin, onSignup }) => {
           />
           <View style={{ marginTop: 20 }} />
           <CustomButton title='Continue' onPress={onSignup} />
-        </View>
-        <TouchableOpacity style={styles.footer} onPress={onLogin}>
-          <Text style={styles.lightText}>Already have an account?</Text>
-          <Text style={{ ...styles.lightText, color: '#C5C7CA' }}>Login</Text>
-        </TouchableOpacity>
-      </>
+
+          <TouchableOpacity style={styles.footer} onPress={onLogin}>
+            <Text style={styles.lightText}>Already have an account?</Text>
+            <Text style={{ ...styles.lightText, color: '#C5C7CA' }}>
+              Login →
+            </Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </KeyboardAwareScrollView>
     </TouchableWithoutFeedback>
   )
 }
@@ -74,6 +75,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: '100%',
     marginTop: 34,
+    height: '100%',
   },
   footer: {
     flexDirection: 'row',
