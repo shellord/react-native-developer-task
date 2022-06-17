@@ -1,4 +1,4 @@
-import { View, StyleSheet, Platform } from 'react-native'
+import { View, StyleSheet, Platform, KeyboardAvoidingView } from 'react-native'
 import Login from '../components/Login'
 import Container from '../components/shared/Container'
 import { useNavigation } from '@react-navigation/native'
@@ -8,26 +8,27 @@ const AuthScreen: React.FC = () => {
   const navigation = useNavigation()
 
   return (
-    <View style={styles.container}>
-      <View style={{ marginBottom: 42 }}>
-        <Logo />
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior='padding'>
+      <View style={styles.container}>
+        <View style={{ marginBottom: 42 }}>
+          <Logo />
+        </View>
+        <Container style={{ borderColor: '#969696', width: '100%' }}>
+          <Login
+            onLogin={() => {
+              navigation.navigate('Home', {
+                showRegister: false,
+              })
+            }}
+            onRegister={() =>
+              navigation.navigate('Home', {
+                showRegister: true,
+              })
+            }
+          />
+        </Container>
       </View>
-
-      <Container style={{ borderColor: '#969696' }}>
-        <Login
-          onLogin={() => {
-            navigation.navigate('Home', {
-              showRegister: false,
-            })
-          }}
-          onRegister={() =>
-            navigation.navigate('Home', {
-              showRegister: true,
-            })
-          }
-        />
-      </Container>
-    </View>
+    </KeyboardAvoidingView>
   )
 }
 

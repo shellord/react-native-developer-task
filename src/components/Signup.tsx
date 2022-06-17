@@ -18,7 +18,7 @@ type Props = {
 const Signup: React.FC<Props> = ({ onLogin, onSignup }) => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <KeyboardAwareScrollView style={styles.inputContainer} extraHeight={100}>
+      <>
         <View style={styles.header}>
           <Text style={styles.lightText}>SIGN UP</Text>
           <Text style={styles.headerText}>Create an account to continue</Text>
@@ -52,7 +52,7 @@ const Signup: React.FC<Props> = ({ onLogin, onSignup }) => {
             </Text>
           </TouchableOpacity>
         </ScrollView>
-      </KeyboardAwareScrollView>
+      </>
     </TouchableWithoutFeedback>
   )
 }

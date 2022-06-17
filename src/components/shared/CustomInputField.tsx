@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '100%',
     borderColor: '#35373B',
     borderWidth: 1.5,
     borderRadius: 4,
@@ -57,7 +56,6 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 16,
-    flex: 1,
     color: '#ffffff',
   },
   label: {

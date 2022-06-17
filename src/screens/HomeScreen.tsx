@@ -5,6 +5,7 @@ import {
   StyleSheet,
   SafeAreaView,
   StatusBar,
+  KeyboardAvoidingView,
 } from 'react-native'
 import CreatePost from '../components/Post/CreatePost'
 import Post from '../components/Post/Post'
@@ -78,16 +79,20 @@ const HomeScreen: React.FC<Props> = ({ route }) => {
         onBackdropPress={() => setShowLogin(false)}
       >
         <View
-          style={{ backgroundColor: '#27292D', height: '60%', borderRadius: 8 }}
+          style={{
+            backgroundColor: '#27292D',
+            height: '60%',
+            borderRadius: 8,
+          }}
         >
-          <ModalContainer onClose={() => setShowLogin(false)}>
-            <KeyboardAwareScrollView>
+          <KeyboardAwareScrollView style={{ flex: 1 }}>
+            <ModalContainer onClose={() => setShowLogin(false)}>
               <Login
                 onLogin={() => setShowLogin(false)}
                 onRegister={() => showSignupModal()}
               />
-            </KeyboardAwareScrollView>
-          </ModalContainer>
+            </ModalContainer>
+          </KeyboardAwareScrollView>
         </View>
       </BottomSheet>
 
@@ -97,14 +102,16 @@ const HomeScreen: React.FC<Props> = ({ route }) => {
         onBackdropPress={() => setShowSignup(false)}
       >
         <View
-          style={{ backgroundColor: '#27292D', height: '80%', borderRadius: 8 }}
+          style={{ backgroundColor: '#27292D', height: '70%', borderRadius: 8 }}
         >
-          <ModalContainer onClose={() => setShowSignup(false)}>
-            <Signup
-              onLogin={() => showLoginModal()}
-              onSignup={() => setShowSignup(false)}
-            />
-          </ModalContainer>
+          <KeyboardAwareScrollView style={{ flex: 1 }}>
+            <ModalContainer onClose={() => setShowSignup(false)}>
+              <Signup
+                onLogin={() => showLoginModal()}
+                onSignup={() => setShowSignup(false)}
+              />
+            </ModalContainer>
+          </KeyboardAwareScrollView>
         </View>
       </BottomSheet>
     </SafeAreaView>

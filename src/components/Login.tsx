@@ -5,6 +5,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Pressable,
+  KeyboardAvoidingView,
 } from 'react-native'
 import CustomInputField from './shared/CustomInputField'
 import CustomButton from './shared/CustomButton'
@@ -17,7 +18,10 @@ type Props = {
 
 const Login: React.FC<Props> = ({ onLogin, onRegister }) => {
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    <TouchableWithoutFeedback
+      onPress={() => Keyboard.dismiss()}
+      style={{ flex: 1, height: '100%' }}
+    >
       <>
         <View style={styles.header}>
           <Text style={styles.lightText}>WELCOME BACK</Text>
@@ -39,6 +43,7 @@ const Login: React.FC<Props> = ({ onLogin, onRegister }) => {
           <View style={{ marginTop: 20 }} />
           <CustomButton title='Login now' onPress={onLogin} />
         </View>
+
         <Pressable style={styles.footer} onPress={onRegister}>
           <Text style={styles.lightText}>Not registered yet? </Text>
           <Text style={{ ...styles.lightText, color: '#C5C7CA' }}>
@@ -66,7 +71,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   inputContainer: {
-    width: '100%',
     marginTop: 34,
   },
   footer: {

@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 24,
     borderColor: '#35373B',
+    margin: 10,
   },
 })
 export default Container
